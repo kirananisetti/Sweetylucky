@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #text-container {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #000;
+      font-size: 24px;
+      display: inline-block;
+    }
+
+    #cursor {
+      display: inline-block;
+      width: 10px;
+      animation: cursorBlink 0.7s infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="text-container">
+    <span id="typed-text"></span>
+    <span id="cursor"></span>
+  </div>
+
+  <script>
+    const text = "This is an example of a text typing animation with a cursor.";
+    const typedText = document.getElementById('typed-text');
+    const cursor = document.getElementById('cursor');
+    let index = 0;
+    const typingSpeed = 80; // Adjust typing speed in milliseconds
+
+    function typeText() {
+      typedText.textContent = text.slice(0, index);
+      index++;
+
+      if (index <= text.length) {
+        setTimeout(typeText, typingSpeed);
+      }
+    }
+
+    // Start the typing animation
+    typeText();
+  </script>
+</body>
+</html>
